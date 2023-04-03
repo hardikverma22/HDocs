@@ -1,8 +1,9 @@
+## Description
 This Github repo contains a HDocs, a web application that allows users to create, edit, and collaborate on documents in real-time. The clone is built using modern web development technologies, including React, Firebase, and Quill.
 
-##DEMO [HDocs](https://hdocs.netlify.app/)
+## DEMO [HDocs](https://hdocs.netlify.app/)
 
-Features
+### Features:
 The HDocs includes the following features:
 
 1. Document creation and editing: Users can create new documents and edit existing documents using a rich text editor.
@@ -10,7 +11,7 @@ The HDocs includes the following features:
 3. User permissions: Users can be given read-only or read-write access to documents.
 4 .Document sharing: Users can share documents with other users via email.
 
-Getting Started
+### Getting Started
 To get started with the Google Docs clone, follow these steps:
 
 1. Clone the repo to your local machine.
