@@ -9,7 +9,7 @@ var firebaseApp = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-app.use(cors());
+app.use(cors());    
 
 
 app.get("/fetchUsers", (req, res) => {
