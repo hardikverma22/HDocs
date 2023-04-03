@@ -17,13 +17,14 @@ To get started with the Google Docs clone, follow these steps:
 1. Clone the repo to your local machine.
 2. Install the required dependencies by running `npm install` in both the `client` and `server` directories.
 3. Create a `.env` file in the `server` directory with the following variables:
+    ```
     VITE_API_kEY = YOUR_VITE_API_kEY
     VITE_AUTH_DOMAIN = YOUR_VITE_AUTH_DOMAIN
     VITE__PROJECT_ID = YOUR_VITE__PROJECT_ID
     VITE__STORAGE_BUCKET = YOUR_VITE__STORAGE_BUCKET
     VITE__MESSAGING_SENDER_ID = YOUR_VITE__MESSAGING_SENDER_ID
     VITE__APP_ID = YOUR_VITE__APP_ID
-
+    ```
 4. Start the server by running npm run DevStart in the server directory.
 5. Start the client by running npm run dev in the client directory.
 6. Open the application in your web browser at http://localhost:5173.
