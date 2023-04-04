@@ -1,4 +1,5 @@
-import { Container, Image } from "react-bootstrap";
+import "./NavBar.css";
+import { ButtonGroup, Container, Form, Image } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
@@ -9,7 +10,8 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../../context/authContext";
+import { useTheme, THEMES } from "../../context/ThemeContext";
 
 const NavBar = ({ docName, setDocName }) => {
   const [showTitleInput, setShowTitleInput] = useState(false);
@@ -18,6 +20,8 @@ const NavBar = ({ docName, setDocName }) => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (location.pathname.match("/document/")) {
@@ -49,10 +53,9 @@ const NavBar = ({ docName, setDocName }) => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg={theme} expand="lg" sticky="top">
         <Container>
           <div className="left-bar-container">
-            {/* <img src={logo} className="logo" /> */}
             <div className="icon-container logo" onClick={handleClickAllDocs}>
               <FontAwesomeIcon
                 icon={faFile}
@@ -63,7 +66,9 @@ const NavBar = ({ docName, setDocName }) => {
             {showTitleInput && (
               <input
                 type="text"
-                className="docName-input"
+                className={`docName-input ${
+                  theme == THEMES.DARK ? "bg-dark text-white" : ""
+                }`}
                 placeholder="Enter email"
                 value={docName}
                 onChange={(e) => setDocName(e.target.value)}
@@ -75,6 +80,9 @@ const NavBar = ({ docName, setDocName }) => {
             <div id="custom-portal"></div>
             {loggedInUser && (
               <NavDropdown
+                menuVariant={theme}
+                align={({ lg: "end" }, { sm: "start" })}
+                as={ButtonGroup}
                 title={
                   <div className="icon-container logo">
                     {!loggedInUser && (
@@ -92,6 +100,15 @@ const NavBar = ({ docName, setDocName }) => {
               >
                 <div className="dropdown-item">{loggedInUser?.email}</div>
                 <NavDropdown.Divider />
+                <div className="dropdown-item">
+                  <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    label="Dark Mode"
+                    checked={theme == THEMES.DARK}
+                    onChange={(e) => toggleTheme(e.target.checked)}
+                  />
+                </div>
                 <div className="dropdown-item logout" onClick={handleLogout}>
                   Log Out
                 </div>

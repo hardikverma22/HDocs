@@ -79,3 +79,7 @@
         transform: rotate(360deg);
     }
 }
+
+.dark .spinner-container {
+    background: #333;
+}

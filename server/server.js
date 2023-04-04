@@ -9,7 +9,7 @@ var firebaseApp = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-app.use(cors());    
+app.use(cors());
 
 
 app.get("/fetchUsers", (req, res) => {
@@ -33,3 +33,7 @@ app.get("/fetchUsers", (req, res) => {
 })
 
 app.listen(3000);
+
+// const app = require("./netlify/functions/firebaseAdminFunction.js");
+
+// app.listen(3000, () => console.log('Local app listening on port 3000!'));

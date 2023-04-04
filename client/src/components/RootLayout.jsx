@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import "./Root.css";
 
-import NavBar from "./NavBar";
+import NavBar from "./Navbar/NavBar";
 import { useState } from "react";
 
 const RootLayout = () => {
