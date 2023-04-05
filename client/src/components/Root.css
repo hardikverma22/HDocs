@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+#root {
+    height: 100vh;
+}
+
 body {
     background-color: #F3F3F3;
 }
@@ -38,6 +42,7 @@ body {
 
 @page {
     margin: 1in;
+    size: auto;
 }
 
 @media print {
@@ -57,10 +62,10 @@ body {
     .ql-toolbar.ql-snow {
         display: none;
     }
+
 }
 
 /* dark mode */
-
 .dark #root {
     background-color: #292c35;
     color: white !important;

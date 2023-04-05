@@ -67,12 +67,10 @@ const DocCard = ({
             {allowActions && (
               <DropdownButton
                 title={<FontAwesomeIcon icon={faEllipsisVertical} />}
-                variant="outline-secondary"
                 bsPrefix="dots-menu"
                 onClick={(e) => toggleDropdown(e)}
                 onBlur={(e) => setShowDropDown(false)}
-                autoClose="true"
-                // show={showDropDown}
+                autoClose={true}
               >
                 <Dropdown.Item
                   as="button"

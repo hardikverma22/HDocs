@@ -11,7 +11,9 @@ The HDocs includes the following features:
 1. Document creation and editing: Users can create new documents and edit existing documents using a rich text editor.
 2. User authentication: Users must sign in with a Google account to use the application.Frebas
 3. User permissions: Users can be given read-only or read-write access to documents.
-   4 .Document sharing: Users can share documents with other users via email.
+4 .Document sharing: Users can share documents with other users via email.
+4 .Document sharing: Users can share documents with other users via email.
+5. Supports Dark mode as well which can be toggled from profile menu.
 
 ### Getting Started
 
