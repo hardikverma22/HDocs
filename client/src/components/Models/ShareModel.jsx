@@ -43,7 +43,7 @@ const ShareModel = ({
       <Button variant="primary" onClick={onClickShare}>
         Share <FontAwesomeIcon icon={faShareNodes} />
       </Button>
-      <Modal show={show} onHide={onClose}>
+      <Modal show={show} onHide={onClose} dialogClassName="bg-dark">
         <Modal.Header closeButton>
           <Modal.Title>Share Document</Modal.Title>
         </Modal.Header>

@@ -1,7 +1,7 @@
-import "./Navbgit addar.css";
 import { ButtonGroup, Container, Form, Image } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import "./NavBar.css";
 
 import { faFile, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/authContext";
-import { useTheme, THEMES } from "../../context/ThemeContext";
+import { THEMES, useTheme } from "../../context/ThemeContext";
 
 const NavBar = ({ docName, setDocName }) => {
   const [showTitleInput, setShowTitleInput] = useState(false);
