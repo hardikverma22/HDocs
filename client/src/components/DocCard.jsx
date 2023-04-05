@@ -9,12 +9,8 @@ import { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import {
-  createDocForUser,
-  deleteDocument,
-  renameDocForUser,
-} from "../../auth/firestore";
-import { useTheme } from "../context/ThemeContext";
+import { deleteDocument } from "../../auth/firestore";
+import { THEMES, useTheme } from "../context/ThemeContext";
 // import Thumbnail from "react-webpage-thumbnail";
 
 const DocCard = ({
@@ -79,7 +75,9 @@ const DocCard = ({
                 <Dropdown.Item
                   as="button"
                   onClick={handleDelete}
-                  bsPrefix="delete-menu-item bg-dark text-white"
+                  bsPrefix={`delete-menu-item ${
+                    theme == THEMES.DARK ? "bg-dark text-white" : ""
+                  }`}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                   <span>Delete</span>
@@ -87,7 +85,9 @@ const DocCard = ({
                 <Dropdown.Item
                   as="button"
                   onClick={handleRename}
-                  bsPrefix="delete-menu-item bg-dark text-white"
+                  bsPrefix={`delete-menu-item ${
+                    theme == THEMES.DARK ? "bg-dark text-white" : ""
+                  }`}
                 >
                   <FontAwesomeIcon icon={faTextHeight} />
                   <span>Rename</span>
