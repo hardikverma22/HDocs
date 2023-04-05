@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import "./index.css";
 
-import TextEditor from "./components/TextEditor";
 import { v4 as uuidv4 } from "uuid";
 import DocList from "./components/DocList/DocList";
 import TextEditor from "./components/TextEditor";
