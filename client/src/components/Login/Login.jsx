@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
-import googleIcon from "../assets/g-normal.png";
-import { useAuth } from "../context/authContext";
+import googleIcon from "../../assets/g-normal.png";
+import { useAuth } from "../../context/authContext";
+import "./Login.css";
 
 const Login = () => {
   const { signIn } = useAuth();

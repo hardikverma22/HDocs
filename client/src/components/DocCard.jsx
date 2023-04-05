@@ -9,11 +9,8 @@ import { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import {
-  createDocForUser,
-  deleteDocument,
-  renameDocForUser,
-} from "../../auth/firestore";
+import { deleteDocument } from "../../auth/firestore";
+import { THEMES, useTheme } from "../context/ThemeContext";
 // import Thumbnail from "react-webpage-thumbnail";
 
 const DocCard = ({
@@ -26,6 +23,8 @@ const DocCard = ({
 }) => {
   const navigate = useNavigate();
   const [showDropDown, setShowDropDown] = useState(false);
+
+  const { theme } = useTheme();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -55,7 +54,7 @@ const DocCard = ({
 
   return (
     <>
-      <Card onClick={handleClick}>
+      <Card onClick={handleClick} bg={theme}>
         <div className="card-icon">
           <FontAwesomeIcon icon={faFileWord} />
           {/* <Thumbnail url={`http:/localhost:5173/document${docId}`} />; */}
@@ -78,7 +77,9 @@ const DocCard = ({
                 <Dropdown.Item
                   as="button"
                   onClick={handleDelete}
-                  bsPrefix="delete-menu-item"
+                  bsPrefix={`delete-menu-item ${
+                    theme == THEMES.DARK ? "bg-dark text-white" : ""
+                  }`}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                   <span>Delete</span>
@@ -86,7 +87,9 @@ const DocCard = ({
                 <Dropdown.Item
                   as="button"
                   onClick={handleRename}
-                  bsPrefix="delete-menu-item"
+                  bsPrefix={`delete-menu-item ${
+                    theme == THEMES.DARK ? "bg-dark text-white" : ""
+                  }`}
                 >
                   <FontAwesomeIcon icon={faTextHeight} />
                   <span>Rename</span>

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import DocCard from "./DocCard";
+import { useAuth } from "../../context/authContext";
 
-import { useAuth } from "../context/authContext";
-import AddNewButton from "./AddNewButton";
-import { getAllDocsForUser, renameDocForUser } from "../../auth/firestore";
-import RenameModal from "./Models/RenameModal";
+import DocCard from "../DocCard";
+import RenameModal from "../Models/RenameModal";
+import AddNewButton from "../AddNewButton";
+import "./DocList.css";
+
+import { getAllDocsForUser, renameDocForUser } from "../../../auth/firestore";
 
 const DocList = () => {
   const [docList, setDocList] = useState();
@@ -58,21 +60,19 @@ const DocList = () => {
     <div className="doclist-container">
       {docList && docList?.docs.length > 0 && (
         <>
-          <div className="doclist-title">Document owned by you</div>
-          <div className="cards-container-outer">
-            <div className="cards-container-inner">
-              {docList.docs.map((doc) => (
-                <DocCard
-                  key={doc.docId}
-                  docName={doc.docName}
-                  docId={doc.docId}
-                  userId={loggedInUser?.uid}
-                  refreshList={refreshList}
-                  handleShow={handleShow}
-                  allowActions={true}
-                />
-              ))}
-            </div>
+          <div className="doclist-title mt-5">Document owned by you</div>
+          <div className="cards-container">
+            {docList.docs.map((doc) => (
+              <DocCard
+                key={doc.docId}
+                docName={doc.docName}
+                docId={doc.docId}
+                userId={loggedInUser?.uid}
+                refreshList={refreshList}
+                handleShow={handleShow}
+                allowActions={true}
+              />
+            ))}
           </div>
         </>
       )}
@@ -80,20 +80,18 @@ const DocList = () => {
       {docList && docList?.sharedDocs.length > 0 && (
         <>
           <div className="doclist-title mt-5">Document shared to you</div>
-          <div className="cards-container-outer">
-            <div className="cards-container-inner">
-              {docList.sharedDocs.map((doc) => (
-                <DocCard
-                  key={doc.docId}
-                  docName={doc.docName}
-                  docId={doc.docId}
-                  userId={loggedInUser?.uid}
-                  refreshList={refreshList}
-                  handleShow={handleShow}
-                  allowActions={false}
-                />
-              ))}
-            </div>
+          <div className="cards-container">
+            {docList.sharedDocs.map((doc) => (
+              <DocCard
+                key={doc.docId}
+                docName={doc.docName}
+                docId={doc.docId}
+                userId={loggedInUser?.uid}
+                refreshList={refreshList}
+                handleShow={handleShow}
+                allowActions={false}
+              />
+            ))}
           </div>
         </>
       )}

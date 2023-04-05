@@ -9,12 +9,12 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import TextEditor from "./components/TextEditor";
-import { v4 as uuidv4,  } from "uuid";
-import DocList from "./components/DocList";
+import { v4 as uuidv4 } from "uuid";
+import DocList from "./components/DocList/DocList";
 import RootLayout from "./components/RootLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./context/authContext";
-import Login from "./components/Login";
+import ThemeProvider from "./context/ThemeContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,12 +29,12 @@ const router = createBrowserRouter(
   )
 );
 
-
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <AuthProvider>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </AuthProvider>
   // </React.StrictMode>
 );

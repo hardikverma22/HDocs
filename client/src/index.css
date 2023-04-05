@@ -5,11 +5,6 @@
     transition: 0.4s;
 }
 
-.icon-container:hover {
-    scale: 1.1;
-    background-color: #21252914;
-}
-
 .logout {
     cursor: pointer;
 }

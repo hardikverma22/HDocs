@@ -2,7 +2,7 @@ import { getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, provider } from "../../auth/firebase";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import Login from "../components/Login";
+import Login from "../components/Login/Login";
 
 const AuthContext = createContext();
 
@@ -13,6 +13,9 @@ const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(false);
 
   const signIn = () => {
+    provider.setCustomParameters({
+      prompt: "select_account",
+    });
     return signInWithPopup(auth, provider);
   };
 

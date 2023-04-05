@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 
 import "./Root.css";
 
-import NavBar from "./NavBar";
 import { useState } from "react";
+import NavBar from "./NavBar/NavBar";
 
 const RootLayout = () => {
   const [docName, setDocName] = useState("Untitled Document");
