@@ -10,6 +10,7 @@ The HDocs includes the following features:
 2. User authentication: Users must sign in with a Google account to use the application.Frebas
 3. User permissions: Users can be given read-only or read-write access to documents.
 4 .Document sharing: Users can share documents with other users via email.
+5. Supports Dark mode as well which can be toggled from profile menu.
 
 ### Getting Started
 To get started with the Google Docs clone, follow these steps:
