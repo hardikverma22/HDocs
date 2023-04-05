@@ -1,5 +1,6 @@
 import "./NavBar.css";
-import { ButtonGroup, Container, Form, Image } from "react-bootstrap";
+
+import { Container, Form, Image } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
@@ -11,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/authContext";
+
 import { useTheme, THEMES } from "../../context/ThemeContext";
 
 const NavBar = ({ docName, setDocName }) => {
@@ -30,10 +32,6 @@ const NavBar = ({ docName, setDocName }) => {
       setShowTitleInput(false);
     }
   }, [location]);
-
-  const handleLogout = () => {
-    signOut();
-  };
 
   const handleClickAllDocs = (e) => {
     e.stopPropagation();
@@ -66,9 +64,7 @@ const NavBar = ({ docName, setDocName }) => {
             {showTitleInput && (
               <input
                 type="text"
-                className={`docName-input ${
-                  theme == THEMES.DARK ? "bg-dark text-white" : ""
-                }`}
+                className="docName-input"
                 placeholder="Enter email"
                 value={docName}
                 onChange={(e) => setDocName(e.target.value)}
@@ -82,7 +78,6 @@ const NavBar = ({ docName, setDocName }) => {
               <NavDropdown
                 menuVariant={theme}
                 align={({ lg: "end" }, { sm: "start" })}
-                as={ButtonGroup}
                 title={
                   <div className="icon-container logo">
                     {!loggedInUser && (
@@ -109,7 +104,7 @@ const NavBar = ({ docName, setDocName }) => {
                     onChange={(e) => toggleTheme(e.target.checked)}
                   />
                 </div>
-                <div className="dropdown-item logout" onClick={handleLogout}>
+                <div className="dropdown-item logout" onClick={() => signOut()}>
                   Log Out
                 </div>
               </NavDropdown>

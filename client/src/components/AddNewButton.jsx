@@ -2,12 +2,13 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const AddNewButton = () => {
   const navigate = useNavigate();
 
   const handleNewDoc = () => {
-    navigate("/newDoc");
+    navigate(`/document/${uuidv4()}`);
   };
 
   return (

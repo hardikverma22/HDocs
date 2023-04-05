@@ -13,6 +13,9 @@ const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(false);
 
   const signIn = () => {
+    provider.setCustomParameters({
+      prompt: "select_account",
+    });
     return signInWithPopup(auth, provider);
   };
 

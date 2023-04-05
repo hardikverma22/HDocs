@@ -80,7 +80,6 @@ const DocList = () => {
       {docList && docList?.sharedDocs.length > 0 && (
         <>
           <div className="doclist-title mt-5">Document shared to you</div>
-
           <div className="cards-container">
             {docList.sharedDocs.map((doc) => (
               <DocCard

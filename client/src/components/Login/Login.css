@@ -29,3 +29,17 @@
 .signin-btn {
     background-color: #dadce0;
 }
+
+/* Ipad and (min-device-width: 768px) */
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .login-form {
+        padding: 5rem;
+    }
+}
+
+/* mobile */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    .login-form {
+        padding: 2rem;
+    }
+}
