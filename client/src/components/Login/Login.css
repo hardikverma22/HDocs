@@ -43,3 +43,7 @@
         padding: 2rem;
     }
 }
+
+.dark .login-icon {
+    color: white;
+}

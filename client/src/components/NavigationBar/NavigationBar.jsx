@@ -73,12 +73,15 @@ const NavigationBar = () => {
       <Navbar bg={theme} expand="lg" sticky="top">
         <Container>
           <div className="left-bar-container">
-            <div className="icon-container logo" onClick={handleClickAllDocs}>
-              <FontAwesomeIcon
-                icon={faFile}
-                className="login-icon"
-                style={{ width: "30px", height: "40px" }}
-              />
+            <div className="logo" onClick={handleClickAllDocs}>
+              <div className="icon-container">
+                <FontAwesomeIcon
+                  icon={faFile}
+                  className="login-icon"
+                  style={{ width: "30px", height: "40px" }}
+                />
+              </div>
+              <span className="brand-text">HDocs</span>
             </div>
             {showTitleInput && (
               <input

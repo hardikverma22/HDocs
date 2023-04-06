@@ -1,5 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
+.brand-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 2em;
+    color: #0d6efd;
+    text-decoration-style: dotted;
+    text-decoration: wavy;
+}
+
+.logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: 0.4s;
+}
+
 .icon-container {
-    padding: 2rem;
     border-radius: 100%;
     aspect-ratio: 1;
     display: flex;
@@ -7,8 +25,8 @@
     align-items: center;
 }
 
-.icon-container:hover {
-    scale: 1.1;
+.logo:hover {
+    scale: 1.05;
 }
 
 .icon-size {
@@ -24,4 +42,8 @@
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
+}
+
+.dark .brand-text {
+    color: white;
 }

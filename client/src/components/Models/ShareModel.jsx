@@ -9,10 +9,13 @@ import Modal from "react-bootstrap/Modal";
 import TypeheadFilter from "../TypeheadFilter";
 import "./Models.css";
 import { useDocs } from "../../context/docContext";
+import { THEMES, useTheme } from "../../context/ThemeContext";
 const ShareModel = ({ show, onClose, onClickShare }) => {
   const [emailList, setEmailList] = useState([]);
 
   const { doc, updateFullSharedEmailDetailsList } = useDocs();
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (doc == null) return;
@@ -22,7 +25,7 @@ const ShareModel = ({ show, onClose, onClickShare }) => {
         : doc.fullSharedEmailDetailsList.map((l) => JSON.parse(l));
     setEmailList(sharedList);
   }, [doc]);
-  
+
   const handleChangeEmailList = () => {
     updateFullSharedEmailDetailsList(emailList);
     onClose();
@@ -42,7 +45,10 @@ const ShareModel = ({ show, onClose, onClickShare }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={onClickShare}>
+      <Button
+        variant={`${theme == THEMES.DARK ? "light" : "primary"}`}
+        onClick={onClickShare}
+      >
         Share <FontAwesomeIcon icon={faShareNodes} />
       </Button>
       <Modal show={show} onHide={onClose} dialogClassName="bg-dark">
