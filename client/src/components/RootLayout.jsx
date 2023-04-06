@@ -2,12 +2,12 @@ import { Outlet } from "react-router-dom";
 
 import "./Root.css";
 import { useState } from "react";
-import NavBar from "./NavBar/NavBar";
+import NavigationBar from "./NavigationBar/NavigationBar";
 
 const RootLayout = () => {
   return (
     <>
-      <NavBar />
+      <NavigationBar />
       <Outlet />
     </>
   );

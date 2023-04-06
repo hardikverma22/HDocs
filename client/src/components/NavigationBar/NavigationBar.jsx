@@ -1,7 +1,7 @@
 import { ButtonGroup, Container, Form, Image } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "./NavBar.css";
+import "./NavigationBar.css";
 
 import { faFile, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +14,7 @@ import { useAuth } from "../../context/authContext";
 import { THEMES, useTheme } from "../../context/ThemeContext";
 import { useDocs } from "../../context/docContext";
 
-const NavBar = () => {
+const NavigationBar = () => {
   const [showTitleInput, setShowTitleInput] = useState(false);
 
   const { loggedInUser, signOut } = useAuth();
@@ -134,4 +134,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavigationBar;
