@@ -3,7 +3,11 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./NavigationBar.css";
 
-import { faFile, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFile,
+  faRightFromBracket,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
@@ -94,7 +98,7 @@ const NavigationBar = () => {
             {loggedInUser && (
               <NavDropdown
                 menuVariant={theme}
-                align={({ lg: "end" }, { sm: "start" })}
+                align={({ lg: "end" }, { sm: "end" })}
                 as={ButtonGroup}
                 title={
                   <div className="icon-container logo">
@@ -111,7 +115,22 @@ const NavigationBar = () => {
                 }
                 id="basic-nav-dropdown"
               >
-                <div className="dropdown-item">{loggedInUser?.email}</div>
+                <div className="dropdown-item">
+                  <div className="badge-container" key={loggedInUser.photoURL}>
+                    <div className="left-search-item-container">
+                      <div className="photo">
+                        <img
+                          alt={loggedInUser.email}
+                          src={loggedInUser.photoURL}
+                        />
+                      </div>
+                      <div className="data">
+                        <span>{loggedInUser.displayName}</span>
+                        <span>{loggedInUser.email}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <NavDropdown.Divider />
                 <div className="dropdown-item">
                   <Form.Check
@@ -123,7 +142,8 @@ const NavigationBar = () => {
                   />
                 </div>
                 <div className="dropdown-item logout" onClick={handleLogout}>
-                  Log Out
+                  <FontAwesomeIcon icon={faRightFromBracket} />
+                  <span style={{ marginLeft: "1em" }}>Log Out</span>
                 </div>
               </NavDropdown>
             )}
