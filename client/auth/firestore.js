@@ -2,16 +2,8 @@ import { db } from "./firebase"
 import { collection, getDocs, doc, getDoc, query, where, setDoc, deleteDoc, documentId, updateDoc } from "firebase/firestore";
 
 
-export const getAllDocs = async () => {
-    const querySnapshot = await getDocs(collection(db, "DocsCollection"));
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
-}
-
-
-export const getSingleDoc = async (docId, userId) => {
-    const q = query(collection(db, "DocsCollection"), where("userId", "==", userId), where(documentId(), "==", docId));
+export const getSingleDoc = async (docId, userId, emailId) => {
+    const q = query(collection(db, "DocsCollection"), where(documentId(), "==", docId));
 
     const querySnapshot = await getDocs(q);
 
@@ -19,8 +11,12 @@ export const getSingleDoc = async (docId, userId) => {
     querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), "docId": doc.id });
     });
-
-    if (docs.length == 0) {
+    if (docs?.length != 0) {
+        if (docs[0].userId == userId || docs[0].sharedEmailList.includes(emailId)) {
+            return docs[0]
+        }
+    }
+    else if (docs?.length == 0) {
         return createDocForUser(userId, docId, JSON.stringify({ content: "" }), "Untitled Document");
     }
 
@@ -73,4 +69,15 @@ export const deleteDocument = async (documentId, docName) => {
 
 export const renameDocForUser = async (documentId, docName) => {
     await updateDoc(doc(db, "DocsCollection", documentId), { docName: docName });
+}
+
+export const updateSharedListOfDocForUser = async (documentId, fullSharedEmailDetailsList) => {
+    const justEmails = fullSharedEmailDetailsList && fullSharedEmailDetailsList.length != 0 ? fullSharedEmailDetailsList.map(e => JSON.parse(e).email) : [];
+
+    await updateDoc(doc(db, "DocsCollection", documentId),
+        { fullSharedEmailDetailsList: fullSharedEmailDetailsList, sharedEmailList: justEmails });
+}
+
+export const updateDocContentForUser = async (documentId, docContent) => {
+    await updateDoc(doc(db, "DocsCollection", documentId), { docContent: docContent });
 }

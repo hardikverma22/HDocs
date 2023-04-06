@@ -7,22 +7,24 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import TypeheadFilter from "../TypeheadFilter";
-
-const ShareModel = ({
-  show,
-  onClose,
-  onClickShare,
-  sharedEmailList,
-  onChangeEmailList,
-}) => {
+import "./Models.css";
+import { useDocs } from "../../context/docContext";
+const ShareModel = ({ show, onClose, onClickShare }) => {
   const [emailList, setEmailList] = useState([]);
 
-  useEffect(() => {
-    setEmailList(sharedEmailList);
-  }, []);
+  const { doc, updateFullSharedEmailDetailsList } = useDocs();
 
+  useEffect(() => {
+    if (doc == null) return;
+    const sharedList =
+      doc.fullSharedEmailDetailsList.length == 0
+        ? []
+        : doc.fullSharedEmailDetailsList.map((l) => JSON.parse(l));
+    setEmailList(sharedList);
+  }, [doc]);
+  
   const handleChangeEmailList = () => {
-    onChangeEmailList(emailList);
+    updateFullSharedEmailDetailsList(emailList);
     onClose();
   };
 

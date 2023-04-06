@@ -18,7 +18,6 @@ app.get("/fetchUsers", (req, res) => {
         .then((listUsersResult) => {
             var allValidemails = [];
             listUsersResult.users.forEach((userRecord) => {
-                //console.log('user', userRecord.toJSON());
                 let user = userRecord.toJSON();
                 if (user.email?.includes(req.query.serachTerm) && req.query.serachTerm != "" && user.email != req.query.currentUserEmail) {
                     allValidemails.push({ email: user.email, name: user.displayName, photoURL: user.photoURL });

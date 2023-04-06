@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import ShareModel from "./Models/ShareModel";
 
-const Portal = ({ sharedEmailList, onChangeEmailList }) => {
+const Portal = () => {
   const [showShareModel, setShowShareModel] = useState(false);
 
   const handleClose = () => setShowShareModel(false);
@@ -32,8 +32,6 @@ const Portal = ({ sharedEmailList, onChangeEmailList }) => {
             onClose={handleClose}
             show={showShareModel}
             onClickShare={handleClickShareButton}
-            sharedEmailList={sharedEmailList}
-            onChangeEmailList={onChangeEmailList}
           />,
           div
         )}

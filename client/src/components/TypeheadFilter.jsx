@@ -5,7 +5,7 @@ import "react-bootstrap-typeahead/css/Typeahead.css";
 
 import { useAuth } from "../context/authContext";
 
-const API_URL = "http://localhost:3000/fetchUsers";
+// const API_URL = "http://localhost:3000/fetchUsers";
 
 const TypeheadFilter = ({ onItemSelected }) => {
   const ref = useRef();
@@ -24,7 +24,7 @@ const TypeheadFilter = ({ onItemSelected }) => {
 
   const fetchUsers = (searchTerm) => {
     axios
-      .get(API_URL, {
+      .get(import.meta.env.VITE_AWS_GATEWAY_API_URL, {
         params: {
           serachTerm: searchTerm,
           currentUserEmail: loggedInUser.email,

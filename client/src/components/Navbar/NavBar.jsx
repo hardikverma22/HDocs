@@ -8,20 +8,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useEffect, useState } from "react";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { useAuth } from "../../context/authContext";
 import { THEMES, useTheme } from "../../context/ThemeContext";
+import { useDocs } from "../../context/docContext";
 
-const NavBar = ({ docName, setDocName }) => {
+const NavBar = () => {
   const [showTitleInput, setShowTitleInput] = useState(false);
 
   const { loggedInUser, signOut } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
+  const { id: documentId } = useParams();
 
   const { theme, toggleTheme } = useTheme();
+
+  const [docName, setDocName] = useState("Untitled Document");
+  const { doc, renameDocument } = useDocs();
+
+  useEffect(() => {
+    if (doc == null) return;
+    setDocName(doc.docName);
+  }, [doc]);
+
+  const handleChangeDocName = (e) => {
+    renameDocument(documentId, e.target.value);
+  };
 
   useEffect(() => {
     if (location.pathname.match("/document/")) {
@@ -42,7 +56,6 @@ const NavBar = ({ docName, setDocName }) => {
 
   // TODO: Debounce this
   // let timeout;
-
   // const handleChange = (e) => {
   //   clearTimeout(timeout);
 
@@ -69,9 +82,9 @@ const NavBar = ({ docName, setDocName }) => {
                 className={`docName-input ${
                   theme == THEMES.DARK ? "bg-dark text-white" : ""
                 }`}
-                placeholder="Enter email"
+                placeholder="Document Name"
                 value={docName}
-                onChange={(e) => setDocName(e.target.value)}
+                onChange={handleChangeDocName}
               />
             )}
           </div>

@@ -72,26 +72,28 @@ const DocCard = ({
                 onBlur={(e) => setShowDropDown(false)}
                 autoClose={true}
               >
-                <Dropdown.Item
-                  as="button"
-                  onClick={handleDelete}
-                  bsPrefix={`delete-menu-item ${
-                    theme == THEMES.DARK ? "bg-dark text-white" : ""
-                  }`}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                  <span>Delete</span>
-                </Dropdown.Item>
-                <Dropdown.Item
-                  as="button"
-                  onClick={handleRename}
-                  bsPrefix={`delete-menu-item ${
-                    theme == THEMES.DARK ? "bg-dark text-white" : ""
-                  }`}
-                >
-                  <FontAwesomeIcon icon={faTextHeight} />
-                  <span>Rename</span>
-                </Dropdown.Item>
+                <div className="dots-menu-item-container">
+                  <Dropdown.Item
+                    as="button"
+                    onClick={handleDelete}
+                    bsPrefix={`delete-menu-item ${
+                      theme == THEMES.DARK ? "bg-dark text-white" : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                    <span>Delete</span>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    as="button"
+                    onClick={handleRename}
+                    bsPrefix={`delete-menu-item ${
+                      theme == THEMES.DARK ? "bg-dark text-white" : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={faTextHeight} />
+                    <span>Rename</span>
+                  </Dropdown.Item>
+                </div>
               </DropdownButton>
             )}
           </div>

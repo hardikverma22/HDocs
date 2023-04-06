@@ -16,6 +16,7 @@ import RootLayout from "./components/RootLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./context/authContext";
 import ThemeProvider from "./context/ThemeContext";
+import DocProvider from "./context/docContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,9 +34,11 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <AuthProvider>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <DocProvider>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </DocProvider>
   </AuthProvider>
   // </React.StrictMode>
 );
