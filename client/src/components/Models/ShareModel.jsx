@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
+import { THEMES, useTheme } from "../../context/ThemeContext";
+import { useDocs } from "../../context/docContext";
 import TypeheadFilter from "../TypeheadFilter";
 import "./Models.css";
-import { useDocs } from "../../context/docContext";
-import { THEMES, useTheme } from "../../context/ThemeContext";
+
 const ShareModel = ({ show, onClose, onClickShare }) => {
   const [emailList, setEmailList] = useState([]);
 

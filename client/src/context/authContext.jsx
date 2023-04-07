@@ -1,8 +1,16 @@
 import { getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  Suspense,
+  createContext,
+  lazy,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { auth, provider } from "../../auth/firebase";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
-import Login from "../components/Login/Login";
+// import Login from "../components/Login/Login";
+const Login = lazy(() => import("../components/Login/Login"));
 
 const AuthContext = createContext();
 
@@ -46,7 +54,14 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={value}>
       {loading && <LoadingSpinner />}
-      {!loading && (loggedInUser ? children : <Login />)}
+      {!loading &&
+        (loggedInUser ? (
+          children
+        ) : (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Login />
+          </Suspense>
+        ))}
     </AuthContext.Provider>
   );
 };

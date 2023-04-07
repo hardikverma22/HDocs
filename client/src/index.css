@@ -1,3 +1,19 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100vh;
+}
+
+body {
+    background-color: #F3F3F3;
+}
+
 .logout {
     cursor: pointer;
 }
@@ -123,4 +139,13 @@
     color: rgb(31 31 31 / 85%);
     font-size: 1rem;
 
+}
+
+.dark #root {
+    background-color: #292c35;
+    color: white !important;
+}
+
+.dark {
+    background-color: #292c35 !important;
 }

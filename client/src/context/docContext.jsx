@@ -16,6 +16,8 @@ const DocProvider = ({ children }) => {
   const [docId, setDocId] = useState(null);
   const { loggedInUser } = useAuth();
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const updateFullSharedEmailDetailsList = (newSharedList) => {
     let list = newSharedList.map((l) => JSON.stringify(l));
     updateSharedListOfDocForUser(docId, list).then(() => {
@@ -55,6 +57,8 @@ const DocProvider = ({ children }) => {
     updateFullSharedEmailDetailsList,
     renameDocument,
     updateDocContent,
+    searchTerm,
+    setSearchTerm,
   };
 
   return <DocContext.Provider value={value}>{children}</DocContext.Provider>;

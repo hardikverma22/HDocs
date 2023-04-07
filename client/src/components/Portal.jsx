@@ -6,7 +6,6 @@ const Portal = () => {
   const [showShareModel, setShowShareModel] = useState(false);
 
   const handleClose = () => setShowShareModel(false);
-
   const handleClickShareButton = () => setShowShareModel(true);
 
   const el = document.getElementById("custom-portal");

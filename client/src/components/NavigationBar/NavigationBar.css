@@ -4,8 +4,6 @@
     font-family: 'Inter', sans-serif;
     font-size: 2em;
     color: #0d6efd;
-    text-decoration-style: dotted;
-    text-decoration: wavy;
 }
 
 .logo {
@@ -17,6 +15,10 @@
     transition: 0.4s;
 }
 
+.logo:hover {
+    scale: 1.05;
+}
+
 .icon-container {
     border-radius: 100%;
     aspect-ratio: 1;
@@ -25,8 +27,8 @@
     align-items: center;
 }
 
-.logo:hover {
-    scale: 1.05;
+.login-icon {
+    color: #0d6efd;
 }
 
 .icon-size {
@@ -42,6 +44,10 @@
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
+}
+
+.mid-section {
+    width: 50%;
 }
 
 .dark .brand-text {

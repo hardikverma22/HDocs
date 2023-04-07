@@ -3,8 +3,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 import { validate as uuidValidate } from "uuid";
-import { useDocs } from "../context/docContext";
-import Portal from "./Portal";
+import { useDocs } from "../../context/docContext";
+import Portal from "../Portal";
+
+import "./TextEditor.css";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],

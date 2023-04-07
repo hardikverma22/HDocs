@@ -7,15 +7,17 @@ import AddNewButton from "../AddNewButton";
 import "./DocList.css";
 
 import { getAllDocsForUser, renameDocForUser } from "../../../auth/firestore";
+import { useDocs } from "../../context/docContext";
 
 const DocList = () => {
-  const [docList, setDocList] = useState();
+  const [docList, setDocList] = useState([]);
+  const [filteredDocList, setFilteredDocList] = useState([]);
 
   const { loggedInUser } = useAuth();
-
+  const { searchTerm } = useDocs();
   const [show, setShow] = useState(false);
-  const [seelctedDocId, setSelectedDocId] = useState(null);
-  const [seelctedDocName, setSelectedDocName] = useState("");
+  const [selectedDocId, setSelectedDocId] = useState(null);
+  const [selectedDocName, setSelectedDocName] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = (docId, docName) => {
@@ -53,16 +55,35 @@ const DocList = () => {
     if (loggedInUser == null) return;
     getAllDocsForUser(loggedInUser.uid, loggedInUser.email).then((data) => {
       setDocList(data);
+      setFilteredDocList(data);
     });
   }, [loggedInUser.uid]);
 
+  useEffect(() => {
+    if (searchTerm == "") {
+      setFilteredDocList(docList);
+    } else {
+      setFilteredDocList(() => {
+        const docs = docList.docs.filter((listItem) =>
+          listItem.docName.includes(searchTerm)
+        );
+
+        const sharedDocs = docList.sharedDocs.filter((listItem) =>
+          listItem.docName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        return { docs: docs, sharedDocs: sharedDocs };
+      });
+    }
+  }, [searchTerm, docList]);
+
   return (
     <div className="doclist-container">
-      {docList && docList?.docs.length > 0 && (
+      {filteredDocList && filteredDocList?.docs?.length > 0 && (
         <>
-          <div className="doclist-title mt-5">Document owned by you</div>
+          <div className="doclist-title">Document owned by you</div>
           <div className="cards-container">
-            {docList.docs.map((doc) => (
+            {filteredDocList?.docs.map((doc) => (
               <DocCard
                 key={doc.docId}
                 docName={doc.docName}
@@ -77,11 +98,11 @@ const DocList = () => {
         </>
       )}
 
-      {docList && docList?.sharedDocs.length > 0 && (
+      {filteredDocList && filteredDocList?.sharedDocs?.length > 0 && (
         <>
           <div className="doclist-title mt-5">Document shared to you</div>
           <div className="cards-container">
-            {docList.sharedDocs.map((doc) => (
+            {filteredDocList.sharedDocs.map((doc) => (
               <DocCard
                 key={doc.docId}
                 docName={doc.docName}
@@ -109,8 +130,8 @@ const DocList = () => {
       <AddNewButton />
       <RenameModal
         show={show}
-        docName={seelctedDocName}
-        docId={seelctedDocId}
+        docName={selectedDocName}
+        docId={selectedDocId}
         onClose={handleClose}
         onRenameDocument={handleRenameDocument}
       />

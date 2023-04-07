@@ -17,9 +17,11 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { THEMES, useTheme } from "../../context/ThemeContext";
 import { useDocs } from "../../context/docContext";
+import SearchInput from "../SearchInput";
 
 const NavigationBar = () => {
   const [showTitleInput, setShowTitleInput] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
 
   const { loggedInUser, signOut } = useAuth();
 
@@ -30,7 +32,7 @@ const NavigationBar = () => {
   const { theme, toggleTheme } = useTheme();
 
   const [docName, setDocName] = useState("Untitled Document");
-  const { doc, renameDocument } = useDocs();
+  const { doc, renameDocument, setSearchTerm } = useDocs();
 
   useEffect(() => {
     if (doc == null) return;
@@ -46,6 +48,11 @@ const NavigationBar = () => {
       setShowTitleInput(true);
     } else {
       setShowTitleInput(false);
+    }
+    if (location.pathname.match(/^\/$/)) {
+      setShowSearchInput(true);
+    } else {
+      setShowSearchInput(false);
     }
   }, [location]);
 
@@ -95,8 +102,9 @@ const NavigationBar = () => {
               />
             )}
           </div>
+          {showSearchInput && <SearchInput onSearch={setSearchTerm} />}
 
-          <div className="ms-auto right-nav">
+          <div className="right-nav">
             <div id="custom-portal"></div>
             {loggedInUser && (
               <NavDropdown
