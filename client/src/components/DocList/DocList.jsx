@@ -64,12 +64,14 @@ const DocList = () => {
       setFilteredDocList(docList);
     } else {
       setFilteredDocList(() => {
+        const searchTermLowerCase = searchTerm.toLowerCase();
+
         const docs = docList.docs.filter((listItem) =>
-          listItem.docName.includes(searchTerm)
+          listItem.docName.toLowerCase().includes(searchTermLowerCase)
         );
 
         const sharedDocs = docList.sharedDocs.filter((listItem) =>
-          listItem.docName.toLowerCase().includes(searchTerm.toLowerCase())
+          listItem.docName.toLowerCase().includes(searchTermLowerCase)
         );
 
         return { docs: docs, sharedDocs: sharedDocs };
