@@ -10,6 +10,7 @@ import { THEMES, useTheme } from "../../context/ThemeContext";
 import { useDocs } from "../../context/docContext";
 import TypeheadFilter from "../TypeheadFilter";
 import "./Models.css";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ShareModel = ({ show, onClose, onClickShare }) => {
   const [emailList, setEmailList] = useState([]);
@@ -46,12 +47,22 @@ const ShareModel = ({ show, onClose, onClickShare }) => {
 
   return (
     <>
-      <Button
-        variant={`${theme == THEMES.DARK ? "light" : "primary"}`}
-        onClick={onClickShare}
-      >
-        Share <FontAwesomeIcon icon={faShareNodes} />
-      </Button>
+      <div className="share-btn-parent">
+        <OverlayTrigger
+          placement="left"
+          overlay={<Tooltip id={`tooltip-left`}>Share Doc</Tooltip>}
+        >
+          <Button
+            id="share-btn"
+            className="share-btn-cls"
+            variant={`${theme == THEMES.DARK ? "light" : "primary"}`}
+            onClick={onClickShare}
+          >
+            <span>Share</span> <FontAwesomeIcon icon={faShareNodes} />
+          </Button>
+        </OverlayTrigger>
+      </div>
+
       <Modal show={show} onHide={onClose} dialogClassName="bg-dark">
         <Modal.Header closeButton>
           <Modal.Title>Share Document</Modal.Title>

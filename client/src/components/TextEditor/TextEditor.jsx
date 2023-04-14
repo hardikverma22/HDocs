@@ -7,6 +7,8 @@ import { useDocs } from "../../context/docContext";
 import Portal from "../Portal";
 
 import "./TextEditor.css";
+import AddNewButton from "../AddNewButton";
+import Menu from "../NavigationBar/Menu";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],

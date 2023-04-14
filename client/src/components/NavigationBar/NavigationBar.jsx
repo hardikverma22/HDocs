@@ -18,6 +18,7 @@ import { useAuth } from "../../context/authContext";
 import { THEMES, useTheme } from "../../context/ThemeContext";
 import { useDocs } from "../../context/docContext";
 import SearchInput from "../SearchInput";
+import DocumentTitleInput from "./DocumentTitleInput";
 
 const NavigationBar = () => {
   const [showTitleInput, setShowTitleInput] = useState(false);
@@ -27,21 +28,10 @@ const NavigationBar = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { id: documentId } = useParams();
 
   const { theme, toggleTheme } = useTheme();
 
-  const [docName, setDocName] = useState("Untitled Document");
-  const { doc, renameDocument, setSearchTerm } = useDocs();
-
-  useEffect(() => {
-    if (doc == null) return;
-    setDocName(doc.docName);
-  }, [doc]);
-
-  const handleChangeDocName = (e) => {
-    renameDocument(documentId, e.target.value);
-  };
+  const { setSearchTerm } = useDocs();
 
   useEffect(() => {
     if (location.pathname.match("/document/")) {
@@ -90,17 +80,7 @@ const NavigationBar = () => {
               </div>
               <span className="brand-text">HDocs</span>
             </div>
-            {showTitleInput && (
-              <input
-                type="text"
-                className={`docName-input ${
-                  theme == THEMES.DARK ? "bg-dark text-white" : ""
-                }`}
-                placeholder="Document Name"
-                value={docName}
-                onChange={handleChangeDocName}
-              />
-            )}
+            {showTitleInput && <DocumentTitleInput theme={theme} />}
           </div>
           {showSearchInput && <SearchInput onSearch={setSearchTerm} />}
 
@@ -109,7 +89,7 @@ const NavigationBar = () => {
             {loggedInUser && (
               <NavDropdown
                 menuVariant={theme}
-                align={({ lg: "end" }, { sm: "end" })}
+                align="end"
                 as={ButtonGroup}
                 title={
                   <div className="icon-container logo">

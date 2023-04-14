@@ -35,11 +35,9 @@ const RenameModal = ({ show, onClose, onRenameDocument, docId, docName }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        {/* <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button> */}
         <Button
-          variant="primary"
+          variant={title == "" ? "secondary" : "primary"}
+          disabled={title == ""}
           onClick={() => onRenameDocument(docId, title)}
         >
           Save Changes

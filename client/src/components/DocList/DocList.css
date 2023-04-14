@@ -1,7 +1,10 @@
 .doclist-container {
     display: flex;
     justify-content: center;
-    padding: 2rem 15rem;
+    margin-top: 2rem;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     gap: 2rem;
     flex-direction: column;
 }
@@ -171,11 +174,7 @@
 }
 
 /* Ipad and (min-device-width: 768px) */
-@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-    .cards-container {
-        justify-content: center;
-    }
-
+/* @media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .add-new-btn {
         width: 50px;
         font-size: 1rem;
@@ -193,15 +192,21 @@
         display: flex;
         justify-content: center;
     }
-}
+} */
 
 /* mobile */
-/* 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+
+@media only screen and (max-width: 700px) {
     .cards-container {
         justify-content: center;
     }
-} */
+
+    .doclist-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 
 /* dark mode */

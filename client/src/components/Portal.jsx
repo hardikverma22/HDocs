@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import ShareModel from "./Models/ShareModel";
+import Menu from "../components/NavigationBar/Menu";
 
 const Portal = () => {
   const [showShareModel, setShowShareModel] = useState(false);
@@ -34,6 +35,11 @@ const Portal = () => {
           />,
           div
         )}
+      <Menu
+        onClose={handleClose}
+        show={showShareModel}
+        onClickShare={handleClickShareButton}
+      />
     </>
   );
 };
