@@ -20,7 +20,9 @@ const Menu = ({ onClose, show, onClickShare }) => {
           <FontAwesomeIcon icon={faFile} />
         </button>
       </OverlayTrigger>
-      <ShareModel onClose={onClose} show={show} onClickShare={onClickShare} />
+      <div className="share-floating-btn">
+        <ShareModel onClose={onClose} show={show} onClickShare={onClickShare} />
+      </div>
     </>
   );
 };
