@@ -1,6 +1,7 @@
 .doclist-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 2rem;
     width: 70%;
     margin-left: auto;
@@ -135,7 +136,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 3rem 18rem;
+    margin: 0 auto;
     border-radius: 0.5rem;
     padding: 2rem;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, .1);

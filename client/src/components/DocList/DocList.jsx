@@ -80,45 +80,54 @@ const DocList = () => {
   }, [searchTerm, docList]);
 
   return (
-    <div className="doclist-container">
-      {filteredDocList && filteredDocList?.docs?.length > 0 && (
-        <>
-          <div className="doclist-title">Document owned by you</div>
-          <div className="cards-container">
-            {filteredDocList?.docs.map((doc) => (
-              <DocCard
-                key={doc.docId}
-                docName={doc.docName}
-                docId={doc.docId}
-                userId={loggedInUser?.uid}
-                refreshList={refreshList}
-                handleShow={handleShow}
-                allowActions={true}
-              />
-            ))}
-          </div>
-        </>
-      )}
+    <>
+      <div className="doclist-container">
+        {filteredDocList && filteredDocList?.docs?.length > 0 && (
+          <>
+            <div className="doclist-title">Document owned by you</div>
+            <div className="cards-container">
+              {filteredDocList?.docs.map((doc) => (
+                <DocCard
+                  key={doc.docId}
+                  docName={doc.docName}
+                  docId={doc.docId}
+                  userId={loggedInUser?.uid}
+                  refreshList={refreshList}
+                  handleShow={handleShow}
+                  allowActions={true}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
-      {filteredDocList && filteredDocList?.sharedDocs?.length > 0 && (
-        <>
-          <div className="doclist-title mt-5">Document shared to you</div>
-          <div className="cards-container">
-            {filteredDocList.sharedDocs.map((doc) => (
-              <DocCard
-                key={doc.docId}
-                docName={doc.docName}
-                docId={doc.docId}
-                userId={loggedInUser?.uid}
-                refreshList={refreshList}
-                handleShow={handleShow}
-                allowActions={false}
-              />
-            ))}
-          </div>
-        </>
-      )}
-
+        {filteredDocList && filteredDocList?.sharedDocs?.length > 0 && (
+          <>
+            <div className="doclist-title mt-5">Document shared to you</div>
+            <div className="cards-container">
+              {filteredDocList.sharedDocs.map((doc) => (
+                <DocCard
+                  key={doc.docId}
+                  docName={doc.docName}
+                  docId={doc.docId}
+                  userId={loggedInUser?.uid}
+                  refreshList={refreshList}
+                  handleShow={handleShow}
+                  allowActions={false}
+                />
+              ))}
+            </div>
+          </>
+        )}
+        <AddNewButton />
+        <RenameModal
+          show={show}
+          docName={selectedDocName}
+          docId={selectedDocId}
+          onClose={handleClose}
+          onRenameDocument={handleRenameDocument}
+        />
+      </div>
       {docList &&
         docList?.docs?.length == 0 &&
         docList?.sharedDocs?.length == 0 && (
@@ -129,15 +138,7 @@ const DocList = () => {
             </div>
           </div>
         )}
-      <AddNewButton />
-      <RenameModal
-        show={show}
-        docName={selectedDocName}
-        docId={selectedDocId}
-        onClose={handleClose}
-        onRenameDocument={handleRenameDocument}
-      />
-    </div>
+    </>
   );
 };
 
