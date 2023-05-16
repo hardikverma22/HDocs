@@ -49,6 +49,12 @@
 
 }
 
+@media (width <=768px) {
+    .ql-toolbar.ql-snow .ql-formats {
+        margin-right: 0px;
+    }
+}
+
 /* dark mode */
 .dark .ql-editor,
 .dark .ql-toolbar.ql-snow,
