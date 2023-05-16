@@ -100,6 +100,7 @@ const NavigationBar = () => {
                       <Image
                         src={loggedInUser.photoURL}
                         className="userImage"
+                        referrerpolicy="no-referrer"
                       />
                     )}
                   </div>

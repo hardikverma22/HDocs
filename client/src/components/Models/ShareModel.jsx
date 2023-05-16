@@ -75,7 +75,11 @@ const ShareModel = ({ show, onClose, onClickShare }) => {
                 <div className="badge-container" key={user.photoURL}>
                   <div className="left-search-item-container">
                     <div className="photo">
-                      <img alt="user_img" src={user.photoURL} />
+                      <img
+                        alt="user_img"
+                        src={user.photoURL}
+                        referrerpolicy="no-referrer"
+                      />
                     </div>
                     <div className="data">
                       <span>{user.name}</span>
